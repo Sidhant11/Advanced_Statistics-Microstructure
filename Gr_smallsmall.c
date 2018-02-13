@@ -1,14 +1,11 @@
 /* program for finding the average pair velocity in a many body suspension */
-/* Wall effects are fully considered for comparison */
-/* Since g(r)=g(-r) was violated a remedy is tried to impose the mentioned condition   */
-
 
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
 # include <time.h>
-# define cy 302
-# define g 2000
+# define cy 302 // Number of cycles averaging throguh
+# define g 2000 // Total number of particles
 # define g1 5 //Number of big particles
 # define s cy*g
 
@@ -17,7 +14,7 @@ main() {
     int i, j, k, m, co;
     float re;
     int rd, td, pd;
-    int st = 200;
+    int st = 200;         //Start cycle to behin averaging
     int td_s;              /* tangential g(r)=g(-r) bin population */
     int nd, nt;
     float norm_f;          /* Normalization factor in each cycle*/
@@ -51,10 +48,10 @@ main() {
     
     
     pi= acos(-1.0);
-    d_r = 0.01;
-    nd = 60;
-    nt = 180;
-    rad_c = 8.0;
+    d_r = 0.01;  //Radial resolution
+    nd = 60;    
+    nt = 180;    //Maximum angle considered - Mirror statistics employed
+    rad_c = 8.0;  //Maximum normalized distance considered
     d_t = (2*pi)/nt;
     alfa = 1.1;
     rp1 = 1.0;
@@ -73,7 +70,7 @@ main() {
     for (i = 0; i < s; i++)
         M[i] = (double *)calloc(8, sizeof(double));
     
-    infile_ptr = fopen("T4_0.35.txt","r");
+    infile_ptr = fopen("T.txt","r");
     
     if (infile_ptr == NULL)
     {   printf("\n can not open the file");
